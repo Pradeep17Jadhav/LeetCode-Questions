@@ -5,9 +5,7 @@ public:
         char temp;
         while(start < end)
         {
-            temp = s[start];
-            s[start] = s[end];
-            s[end] = temp;
+            swap(s[start], s[end]);
             start++;end--;
         }
     }
