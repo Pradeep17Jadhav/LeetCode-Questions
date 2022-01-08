@@ -10,15 +10,13 @@ public:
             if(intervals[prev][1] > intervals[i][0])
             {
                 count++;
-                if(intervals[i][1] < intervals[prev][1])
+                if(intervals[prev][1] > intervals[i][1])
                     prev = i;
             }
             else
                 prev = i;
                 
         }
-                    
-        // return intervals.size() - newList.size();
         return count;
     }
 };
