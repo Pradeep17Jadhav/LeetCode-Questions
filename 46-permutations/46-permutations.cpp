@@ -7,6 +7,7 @@ public:
         int n = nums.size();
 
         int fact = 1;
+        //O(N)
         for(int i = n; i > 0; i--)
         {
             fact *= i;
