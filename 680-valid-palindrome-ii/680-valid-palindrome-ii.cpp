@@ -5,6 +5,8 @@ public:
         return isPalindromeRecursive(s, 0, s.size() - 1, 0, 1);
     }
     
+    //Recursive approach
+    //can be generalised for K number delete allowed
     bool isPalindromeRecursive(string &s, int front, int back, int deleteCount, int deleteAllowedCount)
     {
         if(deleteCount > deleteAllowedCount)
