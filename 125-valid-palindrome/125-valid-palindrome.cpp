@@ -1,6 +1,8 @@
 class Solution {
 public:
     bool isPalindrome(string s) {
+        
+            //  O(2N) complexity
 //         string str;
 //         for(auto i:s)
 //         {
@@ -21,7 +23,9 @@ public:
 //                 return false;
 //         }
 //         return true;
-        
+
+
+        //  O(N) complexity
         int front = 0;
         int back = s.size() - 1;
         while(front < back)
