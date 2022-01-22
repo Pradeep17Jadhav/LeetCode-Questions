@@ -1,8 +1,8 @@
 class Solution {
 public:
     int minAddToMakeValid(string s) {
-        return usingStack(s);
-        // return usingInt(s);
+        // return usingStack(s);
+        return usingInt(s);
     }
 
     int usingInt(string &s)
