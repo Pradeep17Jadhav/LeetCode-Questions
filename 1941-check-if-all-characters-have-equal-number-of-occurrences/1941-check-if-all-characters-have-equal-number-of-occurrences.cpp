@@ -1,8 +1,8 @@
 class Solution {
 public:
     bool areOccurrencesEqual(string s) {
-        // return usingMap(s);
-        return usingVector(s);
+        return usingMap(s);
+        // return usingVector(s);
     }
 
     //vector uses constant time for accessing element
