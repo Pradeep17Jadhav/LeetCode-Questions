@@ -12,11 +12,12 @@ public:
         for(int &i: nums)
         {
             if(i)
+            {
                 curr++;
+                maxx = max(maxx, curr);
+            }
             else if(curr)
                 curr = 0;
-
-            maxx = max(maxx, curr);
         }
         
         return maxx;
