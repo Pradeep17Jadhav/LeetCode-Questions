@@ -14,8 +14,16 @@ public:
     int num;
     bool isUnivalTree(TreeNode* root) {
         num = root->val; //accd to constraints root should have at least one node with values 0-99;
-        return traverse(root);
+        // return traverse(root);
+        return traverseConcise(root);
     }
+    //both solutions are same, but first is concise
+    
+    bool traverseConcise(TreeNode* &root) {
+        if(!root) return true;
+        return root->val == num && traverseConcise(root->left) && traverseConcise(root->right);
+    }
+
     bool traverse(TreeNode* &root) {
         if(root->val != num)
             return false;
