@@ -11,8 +11,8 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* a, ListNode* b) {
-        ListNode* head = a;
-        ListNode* prev = a;
+        ListNode* head = a; // use list "a" to store answer in-place
+        ListNode* prev = a; // to keep track of prev node of answer list
         int carry = 0;
         int sum = 0;
         
@@ -35,7 +35,8 @@ public:
                 b->next = nullptr;
             }
 
-            prev = a; //keep track of last node of list "a"
+            //keep track of last node of list "a"
+            prev = a;
             
             //move to next nodes
             if(a) a = a->next;
