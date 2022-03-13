@@ -11,8 +11,23 @@
  */
 class Solution {
 public:
+    int pre = 0;
     TreeNode* bstToGst(TreeNode* root) {
-        findSum(root, 0);
+        // Soltion 1
+        // findSum(root, 0);
+        // return root;
+    
+        
+        //Solution 2
+        if(root->right)
+            bstToGst(root->right);
+        
+        pre = pre + root->val;
+        root->val = pre;
+        
+        if(root->left)
+            bstToGst(root->left);
+        
         return root;
     }
     
