@@ -1,8 +1,8 @@
 class Solution {
 public:
     bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
-        // return solution1(pushed, popped);
-        return solution2(pushed, popped);
+        return solution1(pushed, popped);
+        // return solution2(pushed, popped);
     }
     
     //using popped as a stack
@@ -12,31 +12,18 @@ public:
     {
         int i = 0;
         int j = 0;
-        int k = pushed.size() - 1;
-        while(i < pushed.size() || j < popped.size())
+        for(int &val: pushed)
         {
-            if(i >= pushed.size())
+            pushed[i] = val;
+            while(i >= 0 && pushed[i] == popped[j])
             {
-                while(pushed[k] == -1)
-                    k--;
-                if(pushed[k] == popped[j])
-                {
-                    k--;
-                    j++;
-                }
-                else return false;
-            }
-            else if(pushed[i] < popped[j])
-                i++;
-            else if(pushed[i] == popped[j])
-            {
-                pushed[i] = -1;
-                i++;
+                i--;
                 j++;
             }
-            else return false;
+            i++;
         }
-        return true;
+        
+        return i == 0;
     }
 
     //using extra stack
