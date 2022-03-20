@@ -11,7 +11,24 @@
 class Solution {
 public:
     ListNode* deleteMiddle(ListNode* head) {
-        return solution2(head);
+        return solution1(head);
+        // return solution2(head);
+    }
+    
+    ListNode* solution1(ListNode* head) {
+        if(!head->next)
+            return {};
+        auto slow = head;
+        auto fast = head->next->next;
+
+        while(fast && fast->next)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        slow->next = slow->next->next;
+        
+        return head;
     }
     
     ListNode* solution2(ListNode* head) {
