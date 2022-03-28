@@ -7,7 +7,8 @@ public:
         int mid;
         
         //Consider example [0,1,2,3,4,5,6,7], target = 2
-
+        //Average case time complexity - O(logN)
+        //Worst case time complexity - O(N)
         while(l <= r)
         {
             mid = (l + r) / 2;
@@ -19,7 +20,7 @@ public:
             
             //Case 1 - left part is sorted, ex - [3,4,5,6,7,0,1,2]
             //Note - mid element is always ignored as it is already matched at the start of iteration
-            //As duplication allowed, we cannot rely on <= (exmaple case - [1,0,1,1,1], target=0)
+            //As duplication allowed, we cannot rely on <= and >= ...(exmaple case - [1,0,1,1,1], target=0)
             if(nums[l] < nums[mid]) 
             {
                 //check if target lies within the left sorted part
@@ -43,8 +44,12 @@ public:
                 else
                     r = mid-1;
             }
+            //since mid is not ans, and first and last are equal to mid, we ignore one of them
+            //this makes worst case time complexity as O(N)
             else
-                l++;
+            {
+                l++; //we cannot do l++ and r-- together as if target is at middle then it can be missed
+            }
         }
         return false;
     }
