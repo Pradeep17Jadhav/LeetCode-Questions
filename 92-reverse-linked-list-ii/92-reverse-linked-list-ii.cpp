@@ -11,6 +11,35 @@
 class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
+        return reverseBetweenSolution1(head, left, right);
+        // return reverseBetweenSolution2(head, left, right);
+    }
+        
+    ListNode* reverseBetweenSolution1(ListNode* head, int left, int right) {
+        ListNode* dummy = new ListNode(0, head);
+        ListNode* pre = dummy;
+        ListNode* curr = NULL;
+        ListNode* temp = NULL;
+        int diff = right-left;
+
+        //find the node before the 'left' node which has to be reversed
+        while(--left)
+            pre = pre->next;
+        curr = pre->next; //left node from which reverse is started
+
+        //important.. take a dry run to understand
+        //keep pre and curr constant, just change the next pointer of each node to prev node
+        //keep updating next of pre and next of curr
+        while(diff--) {
+           temp = pre->next;
+           pre->next = curr->next;
+           curr->next = curr->next->next;
+           pre->next->next = temp;
+       }
+       return dummy->next;
+    }
+    
+    ListNode* reverseBetweenSolution2(ListNode* head, int left, int right) {
         ListNode* dummy = new ListNode(0, head);
         ListNode* l = dummy;
         ListNode* r = dummy->next;
