@@ -1,8 +1,8 @@
 class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
-        // return topKFrequentSolution1(nums, k);
-        return topKFrequentSolution2(nums, k);
+        return topKFrequentSolution1(nums, k);
+        // return topKFrequentSolution2(nums, k);
     }
 
     vector<int> topKFrequentSolution1(vector<int>& nums, int k) {
