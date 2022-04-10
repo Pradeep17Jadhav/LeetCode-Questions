@@ -3,6 +3,7 @@ public:
     void rotate(vector<int>& nums, int k) {
         k = k % nums.size();
         if(!k) return;
+        // solution1(nums, k);
         solution2(nums, k);
     }
     
@@ -56,9 +57,7 @@ public:
         // Iteration 0 - [1,2,3,4,5,6,7], original array for k=3
         // Iteration 1 - [5,6,7,4,1,2,3], when start = 0, n = 7
         // Iteration 2 - [5,6,7,1,2,3,4], when start = 3, n = 4
-        
-        
-        
+
         // Iteration 0 - [0,1,2,3,4,5,6,7,8,9], original array for k=4
         // Iteration 1 - [6,7,8,9,4,5,0,1,2,3], when start = 0, n = 10
         // Iteration 2 - [6,7,8,9,0,1,2,3,4,5], when start = 4, n = 6
