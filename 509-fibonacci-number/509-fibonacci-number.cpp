@@ -1,7 +1,8 @@
 class Solution {
 public:
     int fib(int n) {
-        return fib1(n);
+        // return fib1(n);
+        return fib2(n);
     }
 
     
