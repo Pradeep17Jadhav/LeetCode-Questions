@@ -1,8 +1,8 @@
 class Solution {
 public:
     int climbStairs(int n) {
-        return climbStairs_1(n);
-        // return climbStairs_2(n);
+        // return climbStairs_1(n);
+        return climbStairs_2(n);
     }
     
     //DP
