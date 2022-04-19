@@ -16,17 +16,15 @@ public:
     TreeNode* prev = NULL;
     TreeNode* first; //store first violation
     TreeNode* mid; //store node next to the first violation (in ascd order)
-    TreeNode* last; //store last violation
     int bDone = false;
-    
 
-    //Reference to this solution - https://www.youtube.com/watch?v=ZWGW7FminDM
     
     //TC: O(N)
     //SC: O(1) if recursion stack is not considered.
     //IMP - Implement Morris Traversal for O(1) space complexity
+    //Reference to this solution - https://www.youtube.com/watch?v=ZWGW7FminDM
     void recoverTree(TreeNode* root) {
-        first = mid = last = NULL;
+        first = mid = NULL;
 
         inorder(root); 
         if(!bDone) //if both violations are not found, the values to be swapped are adjucent values (first and mid)
@@ -48,7 +46,7 @@ public:
         if(prev && root->val < prev->val)
         {
             if(!first) {
-                first = prev;
+                first = prev; //for first violation, mark the prev greater node as first violation and curr node as mid 
                 mid = root;
             }
             else {
