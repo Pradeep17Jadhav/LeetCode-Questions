@@ -14,6 +14,41 @@ public:
     TreeNode* ptr;
     vector<TreeNode*> st;
     BSTIterator(TreeNode* root) {
+        addLeftToStack(root);
+    }
+    
+    int next() {
+        ptr = st.back();
+        st.pop_back();
+        int val = ptr->val;
+        addLeftToStack(ptr->right);
+        return val;
+    }
+    
+    bool hasNext() {
+        return !st.empty();
+    }
+    
+    void addLeftToStack(TreeNode* root) {
+        while(root) {
+            st.push_back(root);
+            root = root->left;
+        }
+    }
+};
+
+
+/* Naive Solution - Here we iterate the tree inorder and change the value of visited nodes to -1.
+// Using the inorder traversal and checking if value of next node is -1 or not, we return the value.
+// accepted at -
+// Runtime: 31 ms, faster than 77.05%
+// Memory Usage: 24.1 MB, less than 87.61%
+
+class BSTIterator {
+public:
+    TreeNode* ptr;
+    vector<TreeNode*> st;
+    BSTIterator(TreeNode* root) {
         ptr = root;
         while(ptr) {
             st.push_back(ptr);
@@ -61,10 +96,4 @@ public:
         return false;
     }
 };
-
-/**
- * Your BSTIterator object will be instantiated and called as such:
- * BSTIterator* obj = new BSTIterator(root);
- * int param_1 = obj->next();
- * bool param_2 = obj->hasNext();
- */
+*/
