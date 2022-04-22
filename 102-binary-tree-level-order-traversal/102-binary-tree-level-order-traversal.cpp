@@ -1,39 +1,30 @@
 class Solution {
 public:
-    queue<TreeNode*> q;
-    vector<vector<int>>res;
-    vector<int>temp;
     vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>>res;
         if(!root)
             return res;
         
+        queue<TreeNode*> q; //queue for storing nodes in level order
         q.push(root);
-        int childCount = 1;
-        while(!q.empty()) {
-            int count = childCount;
-            childCount = 0;
+        while(!q.empty()) 
+        {
+            vector<int>temp; //temp vector to store values at current level
+            int count = q.size();
             
-            while(count--) {
+            //get all elements at curr level, add their values in temp array, and add their childs in the queue
+            while(count--)
+            {
                 root = q.front();
                 q.pop();
                 temp.push_back(root->val);
                 
-                if(root->left) {
-                    q.push(root->left);
-                    childCount++;
-                }
-                if(root->right) {
-                    q.push(root->right);
-                    childCount++;
-                }
+                if(root->left) q.push(root->left);
+                if(root->right) q.push(root->right);
 
             }
-            res.push_back(temp);
-            temp.clear();
+            res.push_back(temp); //push temp vector of current level in the result
         }
-        
         return res;
-
     }
-        
 };
