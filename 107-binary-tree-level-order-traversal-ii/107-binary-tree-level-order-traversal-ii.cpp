@@ -16,25 +16,29 @@ public:
         if(!root)
             return res;
         
-        stack<vector<TreeNode*>> st;
-        st.push({root});
+        stack<vector<TreeNode*>> st; //store vector of treenodes at each level in a stack
+        st.push({root}); //store first level
 
         vector<TreeNode*> currLevel;
         vector<TreeNode*> nextLevel;
         while(true) {
             nextLevel.clear();
-            currLevel = st.top();
+            currLevel = st.top(); //use top vector from stack
 
-            for(auto &root: currLevel) {
-                if(root->left) nextLevel.push_back(root->left);
-                if(root->right) nextLevel.push_back(root->right);
+            //add childs of all nodes at the current level in the vector
+            for(auto &node: currLevel) {
+                if(node->left) nextLevel.push_back(node->left);
+                if(node->right) nextLevel.push_back(node->right);
             }
+            
+            //if there are nodes in the next level, push the array to the stack, else break as we have reached last level
             if(nextLevel.size())
                 st.push(nextLevel);
             else
                 break;
         }
         
+        //pop each level from stack, add their node values to the vector and append all such vectors to result vector
         while(st.size()) {
             vector<int> temp;
             currLevel = st.top();
