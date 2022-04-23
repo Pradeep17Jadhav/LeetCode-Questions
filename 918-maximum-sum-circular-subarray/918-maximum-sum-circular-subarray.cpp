@@ -3,8 +3,8 @@ public:
     //Advance question of 53. Maximum Subarray
     //Case 1 - Kadane's algorithm can be directly used of answer subarray is in middle of the 'nums' array
     //Case 2 - The maximum subarray can be part of tail of the array + start of the array
-    //To handle case 2, we find the minimum subarray, total sum of the whole array
-    //So the answer will be - total sum - sum of minimum subarray
+    //To handle case 2, we find the minimum subarray, and the total sum of the whole array
+    //So the answer will be:: total sum - sum of minimum subarray
     //Return the maximum of both the cases
 
     int maxSubarraySumCircular(vector<int>& nums) {
