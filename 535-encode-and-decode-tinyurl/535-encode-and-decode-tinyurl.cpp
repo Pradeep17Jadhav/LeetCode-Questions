@@ -1,5 +1,3 @@
-
-
 unordered_map<string, string> hashmap;
 string base = "http://tinyurl.com/";
 int counter = 0;
@@ -20,7 +18,3 @@ public:
         return hashmap[key];
     }
 };
-
-// Your Solution object will be instantiated and called as such:
-// Solution solution;
-// solution.decode(solution.encode(url));
