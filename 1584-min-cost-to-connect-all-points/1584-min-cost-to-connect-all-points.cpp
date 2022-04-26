@@ -2,7 +2,7 @@ class Solution {
 public:
     
     int getParent(vector<int>& parents, int idx) {
-        if(parents[idx]==idx)
+        if(parents[idx] == idx)
             return idx;
 
         parents[idx] = getParent(parents, parents[parents[idx]]);
