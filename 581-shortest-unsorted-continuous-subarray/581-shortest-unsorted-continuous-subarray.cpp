@@ -12,10 +12,15 @@ public:
         {
             if(nums[i] < nums[i-1])
             {
-                int j = i-1;
+                if(start != nums.size() - 1 && nums[i] >= nums[start]) //if current num is not less than curr num[start], ignore it
+                    continue;
+    
+                //reduce time complexity by starting the new start from current start iff start is already set atleast once
+                int j = (start == nums.size() - 1) ? i-1 : start; 
                 while(j >= 0 && nums[j] > nums[i]) //find actual position when incorrect placement is found
                     j--;
                 start = min(start, j+1);
+                cout << "Start: " << start << endl;
             }
         }
 
@@ -26,10 +31,15 @@ public:
         {
             if(nums[i] < nums[i-1])
             {
-                int j = i;
+                if(end != -1 && nums[i-1] <= nums[end]) //if current num is not greater than curr num[end], ignore it
+                    continue;
+
+                //reduce time complexity by starting the new end from current end iff end is already set atleast once
+                int j = end == -1 ? i : end;
                 while(j < nums.size() && nums[j] < nums[i-1])  //find actual position when incorrect placement is found
                     j++;
-                end = max(end, j-1);                
+                end = max(end, j-1);               
+                cout << "End: " << end << endl; 
             }
         }
         if(start == nums.size() - 1 && end == -1)
