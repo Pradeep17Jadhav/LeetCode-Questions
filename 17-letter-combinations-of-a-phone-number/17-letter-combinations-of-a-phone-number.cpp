@@ -17,8 +17,8 @@ public:
                     extendCombination.push_back(currentCombination + newChar);                            
                 }
             }
-            ans = move(extendCombination); // same as ans = extendCombination, just avoids copying each value. 
-            // swap(ans, extendCombination); // we can also use swap instead of move
+            // ans = move(extendCombination); // same as ans = extendCombination, just avoids copying each value. 
+            swap(ans, extendCombination); // we can also use swap instead of move
         }
         return ans;
     }
