@@ -27,7 +27,7 @@ public:
         //we should decrease our target sum as we are considering that this will help us in
         //making our target sum, and call again function
         solve(i, arr, temp, target - arr[i]); 
-        temp.pop_back(); // backtrack
+        temp.pop_back(); // backtrack - remove the added element as not required anymore
         
     }
     vector<vector<int>> combinationSum(vector<int>& arr, int target) {
