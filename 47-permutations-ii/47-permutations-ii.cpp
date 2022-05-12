@@ -19,7 +19,7 @@ public:
             swap(nums[pos], nums[i]);
             permute(res, nums, pos+1);
         }
-        //backtrack
+        //backtrack (cannot backtrack immediately to maintain the sorted ordered for the rest of the array)
         for (int i = nums.size() - 1; i > pos; --i) 
             swap(nums[pos], nums[i]);
     }
