@@ -17,6 +17,7 @@ public:
         findSum(root, 1);
         return sum;
     }
+
     void findSum(TreeNode* node, int currDepth)
     {
         if(!node)
@@ -34,5 +35,4 @@ public:
         findSum(node->left, currDepth + 1);
         findSum(node->right, currDepth + 1);
     }
-    
 };
