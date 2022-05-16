@@ -14,10 +14,11 @@ public:
 
         while(!q.empty())
         {
-            auto curr = q.front();
+            pair curr = q.front();
             int x = curr.first;
             int y = curr.second;
-            if(x == row-1 && y == col-1) return grid[x][y]; //reached the final destination
+            if(x == row-1 && y == col-1) 
+                return grid[x][y]; //reached the final destination
 
             for(auto direction : directions)
             {
@@ -29,7 +30,7 @@ public:
                 if(newX >= 0 && newX < row && newY >= 0 && newY < col && grid[newX][newY] == 0) 
                 {
                     q.push(make_pair(newX, newY));
-                    grid[newX][newY] = grid[x][y] + 1; //mark as next step, so increase the count of the path
+                    grid[newX][newY] = grid[x][y]+1; //mark as next step, so increase the count of the path
                 }
             }
             q.pop();
