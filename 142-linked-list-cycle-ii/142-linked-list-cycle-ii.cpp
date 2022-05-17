@@ -1,11 +1,3 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
 class Solution {
 public:
     //Floyed's algorithm
@@ -21,7 +13,8 @@ public:
             slow = slow->next;
             
             //if slow fast intersects, cycle is found
-            //continue to slow pointer and start from head at the same time. they will meet each other at the entry point
+            //continue the slow pointer from its current position and 
+            //start traversing from head at the same time. they will meet each other at the entry point
             if(slow == fast)
             {
                 while(slow != head)
