@@ -8,7 +8,7 @@
  */
 class Solution {
 public:
-    //floyed cycle detection algo
+    //// Floyed Cycle Detection Algo
     bool hasCycle(ListNode *head) {
         ListNode* slow = head;
         ListNode* fast = head;
