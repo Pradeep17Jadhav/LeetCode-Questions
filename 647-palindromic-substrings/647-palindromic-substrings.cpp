@@ -1,11 +1,34 @@
 class Solution {
 public:
-    //Method 1 - Bruteforce
+    int countSubstrings(string s) {
+        return recursive(s);
+    }
+    
+    //Method 1 - Recursion (Bruteforce)
     //In bruteforce, 
     //we will have to go to each ith letter, then keep on increasing the range on right - O(N),
     //then check if curr range is palindrome - O(N)
     //Then repeat the same process by starting at next ith position - O(N)
-    //So total TC - O(N)
+    //So total TC - O(N) * O(N) * O(N) = O(N^3)
+    
+    int recursive(string &s) {
+        int res = 0;
+        for(int i = 0; i < s.size(); ++i)
+        {
+            for(int j = i; j < s.size(); ++j)
+            {
+                res += recursiveHelper(s, i, j);
+            }
+        }
+        return res;
+    }
+    
+    // return 1 if s[i..j] is palindromic, 0 otherwise.
+    int recursiveHelper(string& s, int i, int j) {
+        if (i >= j) 
+            return 1;
+        return s[i] == s[j] ? recursiveHelper(s, i+1, j-1) : 0;
+    }
     
     //Method 2 - Optimized method
     //Here, we will start with ith letter, and keep on increase range in both left and right - O(N)
@@ -17,19 +40,19 @@ public:
     //This way we will find palindromes of lengths 2,4,6,8,... Here also the total TC: O(N^2) 
     //So the total TC: O(N^2) + O(N^2)  =  O(2N^2) =  O(N^2) 
     
-    int countSubstrings(string s) {
+    int countSubstrings_2(string &s) {
         int res = 0;
         int n = s.size();
         
         for(int i = 0; i < n; i++) {
-            res += findPalindromes(s, i, i); //find all odd length palindromes having ith index as center
-            res += findPalindromes(s, i, i+1); //find all even length palindromes having center pair {i, i+1}
+            res += countSubstrings_2_helper(s, i, i); //find all odd length palindromes having ith index as center
+            res += countSubstrings_2_helper(s, i, i+1); //find all even length palindromes having center pair {i, i+1}
         }
         
         return res;
     }
     
-    int findPalindromes(string &s, int l, int r) {
+    int countSubstrings_2_helper(string &s, int l, int r) {
         int res = 0;
         
         //check out of bound index and match current extreme ends of range
