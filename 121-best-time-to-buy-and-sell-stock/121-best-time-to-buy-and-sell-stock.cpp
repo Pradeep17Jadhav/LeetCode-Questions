@@ -6,8 +6,9 @@ public:
         
         for(int i: prices)
         {
-            minPrice = min(i, minPrice);
-            maxProfit = max(i - minPrice, maxProfit);
+            //keep on finding min price. We are finding minPrice before calculating profit, so buy is guaranteed to be before sell.
+            minPrice = min(i, minPrice); //keep on finding minimum value element in the array
+            maxProfit = max(maxProfit, i - minPrice);
         }
         return maxProfit;
     }
