@@ -25,9 +25,9 @@ public:
             else
                 nums1[ptr--] = nums2[j--];
         }
-        
-        //as we check nums1[i] > nums2[j] first, it may happen that both are equal but we just use ith value.
-        //so nums2 may still have few values left. add them into the array
+
+        //if j becomes 0 first, the remaining elements in nums1 before i are already sorted so we got the answer
+        //if i becomes 0 first, then there must be few elements left in nums2 which are smaller than ith element. so add them to the nums1
         while(j >= 0)
             nums1[ptr--] = nums2[j--];
     }
@@ -37,10 +37,15 @@ public:
     // SC : O(1)
     void GAP_Algo(vector<int>& nums1, int m, vector<int>& nums2, int n) {
         int maxN = nums1.size();
-        int gap = (maxN + (maxN % 2)) / 2;
+        
+        //starting Gap should be maxN/2 for even length, (maxN+1)/2 for odd
+        //let maxN=6, gap=(6+0)/2=3, let maxN=7, gap=(7+1)/2=4
+        //gap can be odd or even
+        int gap = (maxN + (maxN % 2)) / 2; 
         int ptr1 = 0;
         int ptr2 = gap;
         
+        //fill elements of nums2 in empty extra space in nums1
         for(int i = 0; i < n; i++)
             nums1[m + i] = nums2[i];
         
@@ -48,20 +53,23 @@ public:
         {
             while(ptr2 < maxN)
             {
+                //compares values of ptr1 and ptr2 and swap if required such that lower value should be placed on ptr1
                 if(nums1[ptr1] > nums1[ptr2])
                     swap(nums1[ptr1], nums1[ptr2]);
                 ptr1++;
                 ptr2++;
             }
 
-            gap = gap == 1 ? 0: (gap + gap%2) / 2;
+            gap = gap == 1 ? 0: (gap + gap%2) / 2; //handle both odd and even gaps
             ptr1 = 0;
             ptr2 = gap;
         }
     }
-    
+
 
     //Naive Solution - Not for interviews
+    // TC : O(NlogN)
+    // SC : O(1)
     void Naive_Merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
         for(int i = m, j = 0; i < nums1.size(), j < n; i++, j++)
         {
