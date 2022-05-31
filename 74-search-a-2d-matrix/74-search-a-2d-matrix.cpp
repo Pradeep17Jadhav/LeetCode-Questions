@@ -11,20 +11,20 @@ public:
     bool searchMatrix1(vector<vector<int>>& matrix, int target) {
         int rows = matrix.size();
         int cols = matrix[0].size();
-        int l = 0;
-        int r = rows * cols - 1; //it may overflow for very large values of m and n
+        int left = 0;
+        int right = rows * cols - 1; //it may overflow for very large values of m and n
         int mid, element;
 
-        while(l <= r)
+        while(left <= right)
         {
-            mid = (l+r)/2;
+            mid = (left+right)/2;
             element = matrix[mid / cols][mid % cols]; //check note at bottom for explanation
             if(target == element)
                 return true;
             else if(target < element)
-                r = mid-1;
+                right = mid-1;
             else
-                l = mid+1;
+                left = mid+1;
         }
         return false;
         
@@ -36,8 +36,8 @@ public:
         //250%70=40, so answer is on 40th index of the row
     }
     
-    //TC: O(nlogn)
-    //O(n) for rows - checking last element of each row 
+    //TC: O(rows * logn)
+    //O(row.size()) for rows - checking last element of each row 
     //O(logn) for column - if a row having match is found, using binary search
     bool searchMatrix2(vector<vector<int>>& matrix, int target) {
         int l = 0;
