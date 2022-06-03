@@ -10,7 +10,7 @@ public:
     //SC: O(1)
     int trap_1(vector<int>& height) {
         int res = 0;
-        int high1 = 0, high2 = 0; //store max hight from both left and right side
+        int maxHightLeft = 0, maxHeightRight = 0; //store max hight from both left and right side
         int leftIndex = 0, rightIndex = height.size() - 1; //pointers to current index from left and right
         
         //In loop we will move left pointer towards right and right pointer towards left
@@ -18,16 +18,16 @@ public:
         while(leftIndex < rightIndex) 
         {
             //go from left to right when height of leftIndex pointer is less than rightIndex pointer. Else go from right to left
-            if(height[leftIndex] < height[rightIndex])
+            if(height[leftIndex] <= height[rightIndex])
             {
-                high1 = max(high1, height[leftIndex]); //similar to trap_2
-                res += high1 - height[leftIndex];
+                maxHightLeft = max(maxHightLeft, height[leftIndex]);
+                res += maxHightLeft - height[leftIndex];
                 leftIndex++;
             } 
             else 
             {
-                high2 = max(high2, height[rightIndex]);
-                res += high2 - height[rightIndex];
+                maxHeightRight = max(maxHeightRight, height[rightIndex]);
+                res += maxHeightRight - height[rightIndex];
                 rightIndex--;
             }
         }
