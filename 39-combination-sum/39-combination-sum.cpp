@@ -4,8 +4,7 @@ public:
     void solve(int i, vector<int>& arr, vector<int>& temp, int target)
     {
         // if target becomes zero at any point, we have find a possible combination
-        if(target == 0) 
-        {
+        if(target == 0)  {
             res.push_back(temp);
             return;
         }
@@ -14,7 +13,6 @@ public:
         if(target < 0 || i == arr.size())
             return;
 
-        
         //for every element we have two choices either to include in answer or not to include in answer. 
         //first we do not take the ith element
         //so without decreasing sum we will move to next index because it will not contribute in making our sum
