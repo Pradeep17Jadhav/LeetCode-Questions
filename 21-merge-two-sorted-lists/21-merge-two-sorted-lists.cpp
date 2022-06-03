@@ -1,13 +1,3 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* a, ListNode* b) {
@@ -16,13 +6,11 @@ public:
         ListNode* head; //ptr to store start node
 
         //initialize list with lowest value
-        if(a->val <= b->val)
-        {
+        if(a->val <= b->val){
             head = a;
             a = a->next;
         }
-        else
-        {
+        else {
             head = b;
             b = b->next;
         }
@@ -30,15 +18,12 @@ public:
         //ptr to traverse
         ListNode* ptr = head;
 
-        while(a && b)
-        {
-            if(a->val <= b->val)
-            {
+        while(a && b) {
+            if(a->val <= b->val) {
                 ptr->next = a;
                 a = a->next;
             }
-            else
-            {
+            else {
                 ptr->next = b;
                 b = b->next;
             }
