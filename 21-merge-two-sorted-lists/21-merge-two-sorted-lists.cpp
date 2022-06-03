@@ -4,19 +4,17 @@ public:
         if(!a) return b;
         if(!b) return a;
         ListNode* head; //ptr to store start node
+        ListNode* ptr; //ptr to traverse
 
         //initialize list with lowest value
         if(a->val <= b->val){
-            head = a;
+            ptr = head = a;
             a = a->next;
         }
         else {
-            head = b;
+            ptr = head = b;
             b = b->next;
         }
-        
-        //ptr to traverse
-        ListNode* ptr = head;
 
         while(a && b) {
             if(a->val <= b->val) {
