@@ -21,7 +21,7 @@ public:
             {
                 curr.push_back(s.substr(index, i - index + 1));
                 partition(s, i + 1, curr, res);
-                curr.pop_back();
+                curr.pop_back(); //backtrack
             }
         }
     }
