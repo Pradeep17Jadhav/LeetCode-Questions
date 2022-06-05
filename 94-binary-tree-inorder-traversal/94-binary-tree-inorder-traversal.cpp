@@ -27,7 +27,7 @@ public:
                 root = root->left;
             }
             
-            //add value if stack top in res and remove it from stack
+            //add value of stack top in res and remove it from stack
             root = st.top();
             st.pop();
             res.push_back(root->val);
