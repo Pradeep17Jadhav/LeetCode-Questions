@@ -1,7 +1,7 @@
 class Solution {
 public:
     int totalNQueens(int n) {
-        vector<vector<string>> res;
+        int res = 0;
         vector<string> board;
         string s(n, '.'); //string of n '.' chars
         for(int i = 0; i < n; i++) //fill board with strings of all dots
@@ -12,12 +12,12 @@ public:
         vector<bool>topLeftDiagonal((2*n)-1, false); //hash to check if top-left diagonal has queens
         
         solve_Solution2(res, board, 0, n, topRow, topRightDiagonal, topLeftDiagonal);
-        return res.size();
+        return res;
     }
     
-    void solve_Solution2(vector<vector<string>> &res, vector<string> &board, int row, int n, vector<bool> &topRow, vector<bool> &topRightDiagonal, vector<bool> &topLeftDiagonal) {
+    void solve_Solution2(int &res, vector<string> &board, int row, int n, vector<bool> &topRow, vector<bool> &topRightDiagonal, vector<bool> &topLeftDiagonal) {
         if(row == n) {
-            res.push_back(board);
+            res++;
             return;
         }
         
