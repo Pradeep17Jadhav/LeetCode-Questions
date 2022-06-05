@@ -1,12 +1,9 @@
 class Solution {
 public:
-    int k = 0;
     int search(vector<int>& nums, int target) {
         int l = 0;
         int r = nums.size()-1;
         int mid;
-        
-        //Consider example [0,1,2,3,4,5,6,7], target = 2
 
         while(l <= r)
         {
@@ -18,11 +15,11 @@ public:
             //either left part is sorted, or right part is sorted
             
             //Case 1 - left part is sorted, ex - [3,4,5,6,7,0,1,2]
-            //Note - mid element is always ignored as it is already matched at the start of iteration
             if(nums[l] <= nums[mid]) 
             {
                 //check if target lies within the left sorted part
                 //if yes, then remove all the right part
+                //Note - mid element is always ignored as it is already matched at the start of iteration
                 if(nums[l] <= target && target <= nums[mid])
                     r = mid-1;
                 
