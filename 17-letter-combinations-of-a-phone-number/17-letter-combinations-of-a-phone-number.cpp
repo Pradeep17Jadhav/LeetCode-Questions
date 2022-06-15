@@ -10,7 +10,7 @@ public:
         for(auto digit : digits) //take all digits one by one. 
         {
             vector<string> extendCombination;
-            for(auto& currentCombination : ans) //use existing answer array and append the chars to create new answer
+            for(auto &currentCombination : ans) //use existing answer array and append the chars to create new answer
             {
                 for(auto newChar : mappings[digit - '2']) // append the digits
                 {
