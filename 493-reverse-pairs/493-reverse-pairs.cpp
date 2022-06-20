@@ -21,8 +21,10 @@ public:
         int i, j;
         i = start;
         j = mid+1;
+        
+        //count the reverse pairs
         while(i <= mid) {
-            while(j <= end && arr[i] > 2LL * arr[j])
+            while(j <= end && arr[i] > 2LL * arr[j]) //note that we do not reinitialize j to mid+1 to keep TC: O(N)
                 j++;
 
             reversePairCount += j - (mid+1);
