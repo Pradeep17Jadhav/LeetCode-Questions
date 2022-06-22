@@ -3,10 +3,9 @@ public:
     int maxArea(vector<int>& height) {
         return maxAreaSolution1(height);
         // return maxAreaSolution2(height);
-
     }
     
-    //TC: O(N) - two pointers. Similar to solution 1, but concise;
+    //TC: O(N) - two pointers. Similar to solution 2, but concise;
     int maxAreaSolution1(vector<int>& height) {
         int i = 0; //left ptr
         int j = height.size() - 1; //right ptr
