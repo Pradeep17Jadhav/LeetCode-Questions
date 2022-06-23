@@ -22,7 +22,6 @@ public:
         return memo[n];
     }
 
-    //Bottom up approach
     //TC: O(N)
     //SC: O(1)
     int fib2(int n) {
