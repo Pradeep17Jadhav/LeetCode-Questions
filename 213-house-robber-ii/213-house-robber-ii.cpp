@@ -11,12 +11,12 @@ public:
         //to consider first element, find ans from 0th index to (n-1)th index
         //to consider last element, find ans from 1st index to nth index
         
-        return max(rob_1(nums, 0, n-1), rob_1(nums, 1, n));
+        return max(rob_tabulation(nums, 0, n-1), rob_tabulation(nums, 1, n));
     }
-    
+
     //TC: O(N)
     //SC: O(1)
-    int rob_1(vector<int>& nums, int start, int end) {
+    int rob_tabulation(vector<int>& nums, int start, int end) {
         int a, b, c;
         a = b = 0;
         
