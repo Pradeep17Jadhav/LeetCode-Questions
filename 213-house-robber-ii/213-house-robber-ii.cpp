@@ -17,14 +17,14 @@ public:
     //TC: O(N)
     //SC: O(1)
     int rob_tabulation(vector<int>& nums, int start, int end) {
-        int a, b, c;
-        a = b = 0;
+        int prev2, prev, curr;
+        prev2 = prev = 0;
         
         for(int i = start; i < end; i++) {
-            c = max(a + nums[i], b);
-            a = b;
-            b = c;
+            curr = max(prev2 + nums[i], prev);
+            prev2 = prev;
+            prev = curr;
         }
-        return b;
+        return prev;
     }
 };
