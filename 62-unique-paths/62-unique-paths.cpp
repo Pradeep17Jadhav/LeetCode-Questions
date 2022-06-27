@@ -6,8 +6,22 @@ public:
         // vector<vector<int>> dp(m, vector<int>(n, -1));
         // return memoization(dp, m-1, n-1);
         
-        return tabulation(m, n);
+        // return tabulation(m, n);
+        return tabulation_optimized(m, n);
     }
+
+    int tabulation_optimized(int row, int col) {  
+        vector<int> dp(col, 1);
+        
+        //0th row and 0th col will always be 1 value
+        for(int i = 1; i < row; i++) {
+            for(int j = 1; j < col; j++) {
+                dp[j] += dp[j-1];
+            }
+        }
+        return dp[col-1];
+    }
+    
     
     int tabulation(int row, int col) {  
         vector<vector<int>> dp(row, vector<int>(col, 1));
