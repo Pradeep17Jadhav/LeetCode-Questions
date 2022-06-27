@@ -10,8 +10,8 @@ public:
         // 00100
         //so the maximum digit decides the answer
 
-        return minPartitionsOneLiner(n);
-        // return minPartitionsManually(n);
+        // return minPartitionsOneLiner(n);
+        return minPartitionsManually(n);
     }
 
     int minPartitionsOneLiner(string &n) {
@@ -20,7 +20,10 @@ public:
     int minPartitionsManually(string &n) {
         int maxx = -1; //as number is +ve integer
         for(char &c: n)
+        {
             maxx = max(maxx, c-'0');
+            if(maxx == 9) break;
+        }
         return maxx;
     }
 };
