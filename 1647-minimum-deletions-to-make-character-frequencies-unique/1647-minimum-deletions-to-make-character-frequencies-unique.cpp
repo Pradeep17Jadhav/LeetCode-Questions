@@ -5,9 +5,11 @@ public:
         priority_queue<int> pq;
         int deletions = 0;
 
+        //count frequency of all chars in the string
         for(char &c: s)
             hash[c-'a']++;
         
+        //sort the frequencies using priority queue
         for(int i: hash) {
             if(i != 0)
                 pq.push(i);            
@@ -17,6 +19,7 @@ public:
         int last = pq.top();
         pq.pop();
         
+        //for each char in PQ, make the next char, of equal of hight frequency, to have less frequency than current char
         while(!pq.empty()) {
             int deleteCount = 0;
             curr = pq.top();
