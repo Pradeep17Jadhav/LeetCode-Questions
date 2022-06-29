@@ -1,19 +1,22 @@
 class Solution {
-   public:
+public:
     int minimumTotal(vector<vector<int>>& triangle) {
-        int n = triangle.size();
-        vector<int> currRow(n, 0);
-        vector<int> nextRow(triangle[n-1]);
-        for(int i = n-2; i >= 0; i--)
-        {
-            for(int j = 0; j < i + 1; j++) 
-            {
-                int lowerLeft = triangle[i][j] + nextRow[j];
-                int lowerRight = triangle[i][j] + nextRow[j + 1];
-                currRow[j] = min(lowerLeft, lowerRight);
-            }
-            swap(currRow, nextRow);
-        }
-        return nextRow[0];  //as we swapped at last iteration
+        //Memoization
+        vector<vector<int>> dp(triangle.size(), vector<int>(triangle.size(), -1));
+        return recursion(triangle, dp, 0, 0);
     }
+    
+    int recursion(vector<vector<int>> &triangle, vector<vector<int>> &dp, int row, int col) {
+        if(row == triangle.size() - 1)
+            return triangle[row][col];
+
+        if(dp[row][col] != -1)
+            return dp[row][col];
+
+        int bottom = recursion(triangle, dp, row+1, col);
+        int diagonal = recursion(triangle, dp, row+1, col+1);
+
+        return dp[row][col] = min(bottom, diagonal) + triangle[row][col];
+    }
+
 };
