@@ -1,6 +1,7 @@
 class Solution {
 public:
     //https://www.youtube.com/watch?v=TmhpgXScLyY
+    //Tabulation
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
         int rows = obstacleGrid.size();
         int cols = obstacleGrid[0].size();
