@@ -9,18 +9,18 @@ public:
     //So we can conclude that, even if prod of two nums is less than current number, it can become huge if multiplied with another -ve no.
     
     //To handle negative nos, we will maintain a minimum product of two nos as 'currMin'.
-    //Each time while checking for currMax, we will use maximum value betn currNum and (current num * currMin)
+    //Each time while checking for currMax, we will use maximum value betn (currNum, currNum * currMin, currNum * currMax)
     
     int maxProduct(vector<int>& nums) {
-        int currMax, currMin, res, currNum, maxx;
-        currMax = currMin = res = nums[0];
+        int currMax, currMin, newMax, res, currNum;
+        currMax = currMin = newMax = res = nums[0];
         
         for(int i = 1; i < nums.size(); i++)
         {
             currNum = nums[i];
-            maxx = currMax;  //store the current maximum product
-            currMax = max(maxx * currNum, max(currNum, currNum * currMin));
-            currMin = min(maxx * currNum, min(currNum, currNum * currMin));
+            newMax = max(currNum, max(currNum * currMax, currNum * currMin));
+            currMin = min(currNum, min(currNum * currMax, currNum * currMin));
+            currMax = newMax;
             res = max(currMax, res);
         }
                 
