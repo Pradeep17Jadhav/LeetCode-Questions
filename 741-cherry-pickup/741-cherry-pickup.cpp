@@ -49,6 +49,7 @@ public:
         return dp[row1][col1][col2] = maxCherries + currSum;
     }
     
+    //same solution, just without passing row2 and calculating it
     int memoization_old(vector<vector<int>> &grid, vector<vector<vector<int>>> &dp, int row1, int col1, int col2) {
         int n = grid.size();
         
