@@ -3,9 +3,30 @@ public:
     vector<int> inorderTraversal(TreeNode* root) {
         // return recursive(root);
         // return iterative(root);
-        return MorrisTraversal(root);
+        // return MorrisTraversal(root);
+        return iterative_easy(root);
     }
         
+    vector<int> iterative_easy(TreeNode* root) {
+        vector<int> res;
+        if(!root) return res;
+        stack<TreeNode*> st;
+        while(true) {
+            if(root != NULL) {
+                st.push(root);
+                root = root->left;
+            }
+            else
+            {
+                if(st.empty()) break;
+                root = st.top();
+                st.pop();
+                res.push_back(root->val);
+                root = root->right;
+            }
+        }
+        return res;
+    }
 
     //Solution 3 - Morris Traversal (IMP)
     //TC: almost (but not exactly) O(N)
@@ -50,10 +71,8 @@ public:
             }
         }
         return res;
-        
     }
-    
-    
+
         
     // Solution 2 - Iterative using Stack
     vector<int> iterative(TreeNode* root) {
