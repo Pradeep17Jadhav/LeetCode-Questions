@@ -3,7 +3,8 @@ public:
     vector<int> preorderTraversal(TreeNode* root) {
         // return recursive(root);
         // return iterative(root);
-        return MorrisTraversal(root);
+        // return MorrisTraversal(root);
+        return iterative_easy(root);
         
     }
         
@@ -88,6 +89,29 @@ public:
             root = st.top();
             st.pop();
             root = root->right;
+        }
+        return res;
+    }
+    
+    // Solution 4 - Iterative using Stack (EASY SOLUTION)
+    //TC: O(N)
+    //SC: O(N) stack size
+    vector<int> iterative_easy(TreeNode* root) {
+        vector<int> res;
+        if(!root) return res;
+
+        stack<TreeNode*> st;
+        st.push(root);
+        while(!st.empty()) {
+            root = st.top();
+            st.pop();
+            res.push_back(root->val);
+            
+            if(root->right)
+                st.push(root->right);
+            
+            if(root->left)
+                st.push(root->left);
         }
         return res;
     }
