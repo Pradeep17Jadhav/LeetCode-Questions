@@ -1,8 +1,25 @@
 class Solution {
 public:
     int minCostClimbingStairs(vector<int>& cost) {
-        return minCostClimbingStairs_1(cost);
+        // return minCostClimbingStairs_1(cost);
         // return minCostClimbingStairs_2(cost);
+        
+        vector<int>dp(cost.size()+1, -1);
+        return memoization(cost, dp, cost.size());
+    }
+    
+    int memoization(vector<int>cost, vector<int>&dp, int index) {
+        if(index < 0)
+            return 1e9;
+        if(index == 0 || index == 1)
+            return cost[index];
+        if(dp[index] != -1)
+            return dp[index];
+
+        int oneStep = memoization(cost, dp, index-1);
+        int twoSteps = memoization(cost, dp, index-2);
+        int currCost = index == cost.size() ? 0 : cost[index];
+        return dp[index] = (min(oneStep, twoSteps) + currCost);
     }
     
     //DP
