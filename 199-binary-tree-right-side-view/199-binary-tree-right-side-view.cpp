@@ -3,27 +3,21 @@ public:
     vector<int> rightSideView(TreeNode* root) {
         vector<int> res;
         if(!root) return res;
-        queue<queue<TreeNode*>>q;
-        queue<TreeNode*> prev;
-        prev.push(root);
-        q.push(prev);
+        queue<TreeNode*> q;
+        q.push(root);
         
         while(!q.empty()) {
-            prev = q.front();
-            q.pop();
-            res.push_back(prev.back()->val);
-            queue<TreeNode*> curr;
-            while(!prev.empty()) {
-                root = prev.front();
-                prev.pop();
+            int n = q.size();
+            while(n--) {
+                root = q.front();
+                q.pop();
                 
                 if(root->left)
-                    curr.push(root->left);
+                    q.push(root->left);
                 if(root->right)
-                    curr.push(root->right);
+                    q.push(root->right);
             }
-            if(curr.size())
-                q.push(curr);
+            res.push_back(root->val);
         }
 
         return res;
