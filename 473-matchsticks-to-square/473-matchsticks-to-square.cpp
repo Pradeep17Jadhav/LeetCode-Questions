@@ -2,13 +2,11 @@ class Solution {
 public:
     bool makesquare(vector<int>& sticks) {
         int n = sticks.size();
-        int total = 0;
-        for(int i: sticks)
-            total += i;
-        if(total % 2 == 1 || n < 4)
+        int total = accumulate(sticks.begin(), sticks.end(), 0);
+        if(total % 2 || n < 4)
             return false;
 
-        int side = total / 4;
+        int side = total/4;
         sort(sticks.begin(), sticks.end());
         return traverse(sticks, n-1, side, side, side, side);
     }
