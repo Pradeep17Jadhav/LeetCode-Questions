@@ -2,10 +2,38 @@ class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
         int n = coins.size();
-        vector<vector<int>> dp(n, vector<int> (amount+1, -1));
-        int res = memoization(coins, dp, n-1, amount);
-        return res == 1e9 ? -1 : res;
-        // return solution1(coins, amount);
+        int res = tabulation(coins, amount, n);
+        
+//         vector<vector<int>> dp(n, vector<int> (amount+1, -1));
+//         int res = memoization(coins, dp, n-1, amount);
+        return res >= 1e9 ? -1 : res;
+    }
+    
+    int tabulation(vector<int>& coins, int amount, int n) {
+        if(amount == 0) return 0;
+        vector<int> prev(amount+1, 0), curr(amount+1, 0);
+        
+        for(int target = 0; target <= amount; target++)
+        {
+            if(target % coins[0] == 0)
+                prev[target] = target / coins[0];
+            else
+                prev[target] = 1e9;
+        }
+        
+        for(int i = 1; i < n; i++) {
+            for(int target = 0; target <= amount; target++) {
+                int notTake = prev[target];
+                int take = INT_MAX;
+                if(coins[i] <= target)
+                    take = curr[target-coins[i]] + 1;
+                
+                curr[target] = min(notTake, take);
+            }
+            prev = curr;
+        }
+        
+        return prev[amount];
     }
     
     int memoization(vector<int>& coins, vector<vector<int>> &dp, int index, int amount) {
