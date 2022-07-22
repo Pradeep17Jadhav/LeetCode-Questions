@@ -1,25 +1,26 @@
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
-        ListNode* big = new ListNode(-1e3, head);
-        ListNode* small = new ListNode(-1e3, head);
-        ListNode* bigStart = NULL;
-        ListNode* res = small;
-        ListNode* temp;
-        while(big->next) {
-            if(!bigStart && big->next->val >= x) bigStart = big->next;
-            if(big->next->val < x) {
-                temp = big->next;
-                big->next = big->next->next;
-                small->next = temp;
+        return partition_2(head, x);
+    }
+    
+    ListNode* partition_2(ListNode* head, int x) {
+        ListNode* small = new ListNode(0, head), *big =  new ListNode(0, head);
+        ListNode* startSmall = small, *startBig = big;
+
+        while(head) {
+            if(head->val < x) {
+                small->next = head;
                 small = small->next;
             }
             else {
+                big->next = head;
                 big = big->next;
             }
+            head = head->next;
         }
-        if(small->val != -1e3)
-            small->next = bigStart;
-        return res->next;
+        big->next = NULL;
+        small->next = startBig->next;
+        return startSmall->next;
     }
 };
