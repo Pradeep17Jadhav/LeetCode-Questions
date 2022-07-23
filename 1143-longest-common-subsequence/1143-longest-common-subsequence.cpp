@@ -6,9 +6,32 @@ public:
         // vector<vector<int>> dp(m, vector<int>(n, -1));
         // return memoization(text1, text2, dp, m-1, n-1);
         
-        return tabulation(text1, text2, m, n);
+        // return tabulation(text1, text2, m, n);
+        return tabulation_space_optimized(text1, text2, m, n);
     }
     
+      
+    int tabulation_space_optimized(string text1, string text2, int m, int n) {
+        int maxlen = max(m, n);
+        vector<int> prev(maxlen+1, 0), curr(maxlen+1, 0);
+        
+        for(int i1 = 0; i1 <= m; i1++)
+            prev[0] = 0;
+        
+        for(int i1 = 1; i1 <= m; i1++) {
+            for(int i2 = 1; i2 <= n; i2++) {
+                    
+                if(text1[i1-1] == text2[i2-1])
+                    curr[i2] = 1 + prev[i2-1];
+                else
+                    curr[i2] = max(prev[i2], curr[i2-1]);
+                
+            }
+            prev = curr;
+        }
+        
+        return curr[n];
+    }
     
     int tabulation(string text1, string text2, int m, int n) {
         vector<vector<int>> dp(m+1, vector<int>(n+1, -1));
