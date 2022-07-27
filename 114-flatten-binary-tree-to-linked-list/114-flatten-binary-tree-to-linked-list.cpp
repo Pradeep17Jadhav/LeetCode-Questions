@@ -15,8 +15,6 @@ public:
     }
     
     void iterative(TreeNode* root) {
-        if(!root) return;
-
         while(root) {
             TreeNode* temp = root->right; //Save right node in temp
             root->right = root->left; //Copy left node to right
