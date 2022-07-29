@@ -1,34 +1,33 @@
 class Solution {
 public:
      vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
-		// store numeric patten of Pattern string in v
-        vector<int> v = find_Pattern(pattern);
+        vector<int> temp;
+        vector<int> match = find_Pattern(pattern,  temp); // pattern to be matched
         
         int n = words.size();
-        vector<string> ans;
+        vector<string> res;
         
-		// iterating and comparing pattern of each word with v(numeric pattern of Pattern)
-        for(int i = 0; i < n; ++i)
+        //match pattern with all strings
+        for(int i = 0; i < n; i++)
         {
-            vector<int> pattern_word = find_Pattern(words[i]);
+            vector<int> pattern_word = find_Pattern(words[i], match);
             
 			// if matched add words[i] to answer vector
-            if(v == pattern_word)
-                ans.push_back(words[i]);
+            if(pattern_word.size())
+                res.push_back(words[i]);
         }
         
-        return ans;
+        return res;
     }
     
-    vector<int> find_Pattern(string pattern)
+    vector<int> find_Pattern(string pattern, vector<int> &match)
     {
         vector<int> v;
         if(pattern.empty())
             return v;
 
-        int ind = 0;
-		
         unordered_map<char,int> mp;
+        int ind = 0;
         int n = pattern.size();
         for(int i = 0; i < n; i++)
         {
@@ -36,6 +35,9 @@ public:
 			// increment index because for next unique character the index should be differnt.
            if(mp.find(pattern[i]) == mp.end())
                mp[pattern[i]] = ind++;
+
+            if(match.size() && match[i] != mp[pattern[i]])
+                return {};
 
             v.push_back(mp[pattern[i]]);
         }
