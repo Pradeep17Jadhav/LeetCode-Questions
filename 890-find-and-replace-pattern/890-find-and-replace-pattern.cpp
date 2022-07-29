@@ -29,6 +29,8 @@ public:
         unordered_map<char,int> mp;
         int ind = 0;
         int n = pattern.size();
+        
+        //create pattern for all chars in the string
         for(int i = 0; i < n; i++)
         {
 			// if character not present in map, insert the char with an index,
@@ -36,6 +38,7 @@ public:
            if(mp.find(pattern[i]) == mp.end())
                mp[pattern[i]] = ind++;
 
+            //Optimization - start checking for pattern from 0th index itself. if doesnt match return empty vect
             if(match.size() && match[i] != mp[pattern[i]])
                 return {};
 
