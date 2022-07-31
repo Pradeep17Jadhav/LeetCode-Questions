@@ -1,8 +1,30 @@
 class Solution {
 public:
     int change(int amount, vector<int>& coins) {
-        vector<vector<int>> dp(coins.size(), vector<int>(amount+1, -1));
-        return memoization(coins, dp, coins.size()-1, amount);
+    //     vector<vector<int>> dp(coins.size(), vector<int>(amount+1, -1));
+    //     return memoization(coins, dp, coins.size()-1, amount);
+    
+        return tabulation(amount, coins);
+    }
+    
+    int tabulation(int amount, vector<int>& coins) {
+        vector<vector<int>> dp(coins.size(), vector<int>(amount+1, 0));
+        
+        for(int j = 0; j <= amount; j++)
+            dp[0][j] = j % coins[0] == 0;
+        
+        for(int ind = 1; ind < coins.size(); ind++) {
+            for(int target = 0; target <= amount; target++) {
+                int notTake = dp[ind-1][target];
+                int take = 0;
+                if(coins[ind] <= target)
+                    take = dp[ind][target-coins[ind]];
+                
+                dp[ind][target] = take + notTake;
+            }
+        }
+        
+        return dp[coins.size()-1][amount];
     }
     
     int memoization(vector<int> &coins, vector<vector<int>> &dp, int index, int amount) {
