@@ -37,8 +37,7 @@ public:
     //TC: O(N)
     //SC: auxilary + dp array = O(2*N) = O(N)
     int memoization(vector<vector<int>> &dp, int row, int col) {
-        if(row < 0) return 0;
-        if(col < 0) return 0;
+        if(row < 0 || col < 0) return 0;
         if(row == 0 && col == 0)
             return 1;
         if(dp[row][col] != -1)
@@ -49,8 +48,7 @@ public:
     
     //TC: O(N^2)
     int recursive(int row, int col) {
-        if(row < 0) return 0;
-        if(col < 0) return 0;
+        if(row < 0 || col < 0) return 0;
         if(row == 0 && col == 0)
             return 1;
 
