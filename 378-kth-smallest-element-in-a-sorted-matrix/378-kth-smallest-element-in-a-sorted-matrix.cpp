@@ -18,9 +18,9 @@ public:
                 while(temp >= 0 && matrix[i][temp] > mid){
                     temp--;
                 }
-                count+= (temp+1);
+                count += (temp+1);
             }
-            
+            cout << mid << ": " << count << " " << k << endl;
             if(count < k)
                 low = mid + 1;
             else
