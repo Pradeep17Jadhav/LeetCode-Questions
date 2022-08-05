@@ -13,20 +13,19 @@ public:
     
     int pop() {
         int n = q.size();
+        if(n == 0)
+            return -1;
         int temp;
-        while(n--)
+        while(--n)
         {
             temp = q.front();
             q.pop();
-            if(temp == peek)
-            {
-                peek = q.back();
-                return temp;
-            }
-            else
-                q.push(temp);
+            q.push(temp);
         }
-        return -1;
+        temp = q.front();
+        q.pop();
+        peek = q.back();
+        return temp;
     }
     
     int top() {
