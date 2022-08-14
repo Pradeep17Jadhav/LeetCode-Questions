@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //Reference - DP13 - Striver DP Playlist
     int cherryPickup(vector<vector<int>>& grid) {
         int n = grid.size();
         vector<vector<vector<int>>> dp(n, vector<vector<int>>(n, vector<int>(n, -1))); //3D memoization vector
@@ -7,7 +8,7 @@ public:
         return cherries <= 0 ? 0 : cherries; //handle case of no cherries collected
     }
     
-    int memoization(vector<vector<int>> &grid, vector<vector<vector<int>>> &dp, int row1, int row2, int col1, int col2) {
+    int memoization(vector<vector<int>> &grid, vector<vector<vector<int>>> &dp, int row1, int col1, int row2, int col2) {
         int n = grid.size();
        
         //handle out of bound cases and thorn blocker
@@ -37,10 +38,10 @@ public:
         int maxCherries = -1e9; //initialize with very small value. Not using INT_MIN to avoid int overflow
         
         //recursively call for combination of direction for both pointers together
-        int downdown = memoization(grid, dp, row1+1, row2+1,col1, col2); //both move downwards
-        int downright = memoization(grid, dp, row1+1, row2, col1, col2+1); //pointer1 move downwards, pointer2 move to right
-        int rightdown = memoization(grid, dp, row1, row2+1, col1+1, col2); //pointer1 move to right, pointer2 move downwards
-        int rightright = memoization(grid, dp, row1, row2, col1+1, col2+1); //both pointers move to right
+        int downdown = memoization(grid, dp, row1+1, col1, row2+1, col2); //both move downwards
+        int downright = memoization(grid, dp, row1+1, col1, row2, col2+1); //pointer1 move downwards, pointer2 move to right
+        int rightdown = memoization(grid, dp, row1, col1+1, row2+1, col2); //pointer1 move to right, pointer2 move downwards
+        int rightright = memoization(grid, dp, row1, col1+1, row2, col2+1); //both pointers move to right
         
         //take maximum of all paths
         maxCherries = max(downdown, max(downright, max(rightdown, rightright)));
