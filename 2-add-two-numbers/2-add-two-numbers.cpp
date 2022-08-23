@@ -1,23 +1,23 @@
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
 class Solution {
 public:
+    //Solution 1 - 
+    //Iterate over all nodes of list a and b.
+    //Create a new head and Keep creating new nodes next to head for each sums of a and b
+    //SC: O(max(a,b))
+    
+    //Solution 2 -
+    //Iterate over all nodes of list a and b.
+    //Find the sum of a and b and replace it in node of list a in-place
+    //SC O(1)
+    
+    //NOTE - Can also be asked in reverse list. Then first we will reverse both the lists, then add the nodes and again reverse the answer.
     ListNode* addTwoNumbers(ListNode* a, ListNode* b) {
         ListNode* head = a; // use list "a" to store answer in-place
         ListNode* prev = a; // to keep track of prev node of answer list
         int carry = 0;
         int sum = 0;
         
-        while(a || b)
-        {
+        while(a || b) {
             //sum = carry + a + b
             sum = carry;
             if(a) sum += a->val;
@@ -29,19 +29,16 @@ public:
             //if list "b" has more nodes than list "a",
             //point the list "a" to remaining nodes of list "b"
             //so, we can use any list (a or b) to update answer in-place
-            if(b && b->next && !a->next)
-            {
+            if(!a->next && b != NULL && b->next) {
                 a->next = b->next;
                 b->next = nullptr;
             }
 
-            //keep track of last node of list "a"
-            prev = a;
+            prev = a; //keep track of last node of list "a"
             
             //move to next nodes
             if(a) a = a->next;
             if(b) b = b->next;
-
         }
         
         //add new node for carry at the end
